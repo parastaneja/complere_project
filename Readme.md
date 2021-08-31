@@ -1,5 +1,5 @@
-# This is sample Project
+# This is Complere Project
 
-The intension of this session is to do recording
+It contains Backend (Node JS) and front end (React JS) code.
 
-This session is being recording with Node JS Team members
+This project is only intended for learning purpose.
