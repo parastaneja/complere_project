@@ -54,6 +54,7 @@ const useStyles = makeStyles(theme => ({
         width: 'auto',
         height: theme.appHeaderHeight,
         borderBottomLeftRadius: theme.spacing(1.875),
+        padding: '0px'
     },
     rightDiv: {
         flexDirection: 'row',

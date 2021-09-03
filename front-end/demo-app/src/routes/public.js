@@ -1,15 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import AppHeader from '../components/AppHeader';
+import StyleDrawer from '../components/StyleDrawer';
+import BaseLayout from '../layouts/BaseLayout';
 import Employ from '../pages/employ/Employ';
 
 function PublicRoute() {
     return (
         <div>
-            <AppHeader />
+
             <BrowserRouter>
+                <StyleDrawer />
                 <Switch>
-                    <Route path={["/", "/employ"]} component={Employ} />
+                    <BaseLayout>
+                        <Route path={["/", "/employ"]} component={Employ} />
+                    </BaseLayout>
+
                 </Switch>
             </BrowserRouter>
         </div>
