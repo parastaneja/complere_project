@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AppHeader from '../components/AppHeader';
-import Employ from '../pages/employe/employe';
+import Employ from '../pages/employ/Employ';
 
 function PublicRoute() {
     return (
