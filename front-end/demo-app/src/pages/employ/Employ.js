@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import PageLayout from '../../layouts/PageLayout';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,9 +17,13 @@ function Employ() {
     const classes = useStyles();
 
     return (
-        <div className={classes.div} >
-            Employ
-        </div>
+        <>
+            <PageLayout
+                leftComponent={(<div>1234</div>)}
+                rightComponent={(<div>456</div>)}
+            />
+
+        </>
     )
 
 }
