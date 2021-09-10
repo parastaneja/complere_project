@@ -1,7 +1,7 @@
 const employeesService = require('./employees.service');
 const { successHandler } = require('../common/handlers');
 const logger = require('../libs/logger')();
-const { getEmployeeListValidation, getEmployeeDetailsValidation } = require('./employees.validation');
+const { getEmployeeListValidation, getEmployeeDetailsValidation, addEmployeeValidation } = require('./employees.validation');
 
 const getEmployeeList = async (req, res, next) => {
   try {
@@ -36,7 +36,31 @@ const getEmployeeDetails = async (req, res, next) => {
   }
 };
 
+const addEmployee = async (req, res, next) => {
+  try {
+    const { body } = req;
+    await addEmployeeValidation.validateAsync({ ...body });
+    const { employee_id } = await employeesService.addEmployee({ ...body });
+    return successHandler({ employee_id }, req, res);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const updateEmployee = async (req, res, next) => {
+  try {
+    const { body } = req;
+    await addEmployeeValidation.validateAsync({ ...body });
+    const { employee_id } = await employeesService.addEmployee({ ...body });
+    return successHandler({ employee_id }, req, res);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   getEmployeeList,
   getEmployeeDetails,
+  addEmployee,
+  updateEmployee,
 };

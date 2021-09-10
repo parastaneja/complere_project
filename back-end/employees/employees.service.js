@@ -4,26 +4,11 @@ const logger = require('../libs/logger')();
 
 const getEmployeeList = async ({
   employee_id, first_name, last_name, is_deleted, sort_by, sort_direction = 'asc', limit, skip,
-}) => {
-  const conn = await pgManager.getConnection();
+}, { connection }) => {
+  const conn = connection || await pgManager.getConnection();
   const params = [];
   const whereArray = [];
 
-  // if (employee_id !== undefined) {
-  //   whereArray.push('employee_id=$1');
-  //   params.push(employee_id);
-  // }
-  // if (first_name !== undefined) {
-  //   whereArray.push('first_name=?');
-  //   params.push(first_name);
-  // }
-  // if (last_name !== undefined) {
-  //   whereArray.push('last_name=?');
-  //   params.push(last_name);
-  // } if (is_deleted !== undefined) {
-  //   whereArray.push('is_deleted=?');
-  //   params.push(is_deleted);
-  // }
   let i = 1;
   if (first_name !== undefined) {
     whereArray.push(`first_name = $${i}`);
@@ -64,7 +49,30 @@ const getEmployeeDetails = async ({ employee_id }) => {
   return rows[0];
 };
 
+const addEmployee = async ({ first_name, last_name }, { connection } = {}) => {
+  const conn = connection || (await pgManager.getConnection());
+  const query = `
+INSERT INTO ${config.pgsql.schema}.employee (first_name, last_name)
+VALUES ($1, $2) returning*
+  `;
+
+  const params = [
+    first_name, last_name,
+  ];
+
+  logger.info({
+    message: 'query',
+    function_name: 'addEmployee',
+    query,
+    params,
+  });
+
+  const { rows } = await conn.query(query, params);
+  return rows[0];
+};
+
 module.exports = {
   getEmployeeList,
   getEmployeeDetails,
+  addEmployee,
 };
