@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import EmployList from '../../container/Employe/EmployList';
 import PageLayout from '../../layouts/PageLayout';
 
 
@@ -19,7 +20,7 @@ function Employ() {
     return (
         <>
             <PageLayout
-                leftComponent={(<div>1234</div>)}
+                leftComponent={(<EmployList />)}
                 rightComponent={(<div>456</div>)}
             />
 
