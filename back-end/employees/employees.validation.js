@@ -27,8 +27,19 @@ const addEmployeeValidation = Joi.object({
   last_name,
 });
 
+const updateEmployeeValidation = Joi.object({
+  employee_id,
+  first_name,
+  last_name,
+});
+
+const deleteEmployeeValidation = Joi.object({
+  employee_id,
+});
 module.exports = {
   getEmployeeListValidation,
   getEmployeeDetailsValidation,
   addEmployeeValidation,
+  updateEmployeeValidation,
+  deleteEmployeeValidation,
 };
